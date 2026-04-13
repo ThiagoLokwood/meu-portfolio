@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Portfólio - Eureka Games</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html, body {
+            height: 100%;
+            height: -webkit-fill-available;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            background-color: #0f172a;
+        }
+        header, footer { flex-shrink: 0; width: 100%; }
+        main {
+            flex-grow: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+        }
+        .video-card { transition: transform 0.3s ease; }
+        .video-card:hover { transform: translateY(-5px); }
+        video { cursor: pointer; }
+        
+        #videoModal {
+            display: none !important;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999 !important;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        .modal-content {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .video-container {
+            background: #000;
+            width: 100%;
+            flex-shrink: 1;
+            min-height: 0;
+            display: flex;
+            justify-content: center;
+        }
+        #modalVideo { max-width: 100%; max-height: 50vh; }
+        main::-webkit-scrollbar { width: 6px; }
+        main::-webkit-scrollbar-track { background: #0f172a; }
+        main::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-white font-sans">
+
+    <header class="py-4 md:py-6 px-4 text-center border-b border-slate-800 bg-slate-900 shadow-md">
+        <div class="inline-block bg-white p-1.5 rounded-full mb-2">
+            <img src="LogoRedondo.png" alt="Eureka Games" class="h-12 md:h-16" onerror="this.src='https://placehold.co/80x80?text=EG'">
+        </div>
+        <p class="text-slate-400 max-w-xl mx-auto text-[10px] md:text-sm px-2 italic">
+        Transformamos conceitos em experiências interativas.
+        </p>
+    </header>
+
+    <main>
+        <div class="max-w-6xl mx-auto p-4 md:p-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700" 
+                 onclick="openModal('Candy Crush', 'Sanofi', 'Gamificação desenvolvida para a farmacêutica Sanofi, adaptando a mecânica clássica para conscientização sobre os sintomas da Doença de Fabry. O software foi integrado a um totem touchscreen de grande formato, utilizado em eventos médicos para facilitar o aprendizado de forma lúdica e interativa.', 'Candy Crush.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Candy Crush.mp4" autoplay muted loop playsinline class="w-full h-full object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Candy Crush</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Sanofi</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Gamificação desenvolvida para a farmacêutica Sanofi, adaptando a mecânica clássica de "match-3" para conscientização sobre os sintomas da Doença de Fabry. O software foi integrado a um totem touchscreen de grande formato, utilizado em eventos médicos para facilitar o aprendizado de forma lúdica e interativa.</p>
+                </div>
+            </div>
+            
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Painel de Agilidade - Sispack', 'Sispack', 'Painel interativo que combina botões físicos de acionamento rápido e interface digital. Uma solução personalizada de gamificação para eventos que testa a velocidade dos usuários enquanto reforça conceitos de higiene e proteção.', 'AgilidadeSispac.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="AgilidadeSispac.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Painel de Agilidade - Sispack</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Sispack</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Painel interativo que combina botões físicos de acionamento rápido e interface digital. Uma solução personalizada de gamificação para eventos que testa a velocidade dos usuários enquanto reforça conceitos de higiene e proteção.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Painel Interativo', 'Sanofi', 'Nesta ativação desenvolvida para a Sanofi, elevamos o nível do aprendizado corporativo através da interação física. O projeto utiliza um sistema de tubos e esferas retroalimentado por uma tela digital de alta definição.Ao inserir as esferas nos pontos indicados, o participante ativa uma animação sincronizada que explica a importância da trombina no organismo. É o equilíbrio perfeito entre hardware e software: Interatividade Tátil: O movimento físico da esfera dispara gatilhos no sistema. Conteúdo Sincronizado: A explicação visual na tela acompanha o trajeto da esfera em tempo real. Engajamento de Público: Uma forma inovadora de atrair visitantes e fixar mensagens complexas de saúde e ciência de maneira leve e memorável.', 'Tubo Sanofi.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Tubo Sanofi.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Painel Interativo</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Sanofi</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Uma experiência sensorial que transforma conceitos científicos em realidade física. Os participantes interagem com um sistema de tubulações e esferas para visualizar, de forma prática e engajadora, processos biológicos complexos no estande da Sanofi.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Desafio de Quadribol', 'Warner Bros. Games', 'Nesta ativação exclusiva para a Warner Bros. Games durante a CCXP, desenvolvemos uma solução completa de gamificação inspirada no universo de Harry Potter. O projeto integrou: Hardware Personalizado: Controle sem fio dedicado para gerenciamento de partidas (Start/Pause/Reset). Sensores de Precisão: Detecção em tempo real de acertos nos três aros icônicos, com diferentes níveis de dificuldade e pontuação. Feedback Instantâneo: Painéis de LED integrados à cenografia para exibição dinâmica de score e cronômetro regressivo. Engajamento: Uma experiência física que une cenografia imersiva com tecnologia de ponta para criar momentos memoráveis e altamente compartilháveis.', 'aneis.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="aneis.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Desafio de Quadribol</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Warner Bros. Games</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Ativação interativa de alta performance desenvolvida para o estande da Warner Bros. Games. Os visitantes testam suas habilidades em um jogo de precisão com sensores infravermelhos e sistema de pontuação em tempo real, transportando a magia do Quadribol para o mundo real.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Queda de Objetos', 'ONG Minha Down é UP', 'Assista ao funcionamento desta solução de gamificação física projetada para testar os limites dos participantes. A ativação Queda de Objetos, combina engenharia de hardware com uma interface digital intuitiva: Mecânica de Jogo: O sistema libera bastões de forma aleatória e imprevisível. O participante deve estar atento aos sinais luminosos (LEDs) para antecipar a queda e realizar a captura. Hardware e Firmware: O suporte conta com eletroímãs ou gatilhos eletrônicos controlados por um algoritmo de aleatoriedade, garantindo que cada partida seja única. Engajamento Visual: Uma tela integrada exibe o progresso, pontuações ou instruções, enquanto a iluminação em LED orienta a ação do jogador. Aplicação: Perfeito para stands que buscam gerar aglomeração e competição saudável, sendo uma ferramenta poderosa para atrair o público e criar momentos memoráveis.', 'Queda de Objetos.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Queda de Objetos.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Queda de Objetos</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: ONG Minha Down é UP</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Teste sua velocidade de reação neste desafio eletrizante! O objetivo é simples, mas exige foco total: objetos caem aleatoriamente de um suporte eletrônico e você precisa pegá-los antes que atinjam o chão. Uma ativação de alto impacto que utiliza sensores e iluminação sincronizada para criar uma competição divertida e dinâmica.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Painel de Agilidade - Can-Am', 'Can-Am Off-Road', 'Veja como funciona nossa empolgante ativação de gamificação! Neste desafio de agilidade de marca Can-Am, os participantes devem tocar rapidamente nos botões que se iluminam aleatoriamente em um painel interativo. Um cronômetro regressivo e um placar digital mostram a pontuação em tempo real, criando uma competição divertida e engajadora. Esta ativação é perfeita para testar a coordenação motora e os reflexos dos visitantes, gerando burburinho e interação com a marca Can-Am de forma inovadora e memorável.', 'ParedeAgilidade4.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="ParedeAgilidade4.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Painel de Agilidade - Can-Am</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Can-Am Off-Road</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Jogo interativo de luzes! Apague as luzes que piscam no painel Can-Am o mais rápido possível e mostre que você tem a agilidade de um verdadeiro piloto.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Desafio dos Armários', 'Flash', 'Nesta ativação para a Flash Benefícios, o objetivo foi gamificar a apresentação do portfólio da empresa. Criamos um sistema inteligente onde o ato físico de abrir uma porta disparava uma resposta digital imediata, criando uma jornada de descoberta para o visitante: Gatilhos de Conteúdo (Triggers): Integração de sensores nas portas dos armários que, ao serem abertas, acionavam automaticamente vídeos específicos sobre os benefícios de ter a Flash no negócio. Sincronização Hardware-Software: Desenvolvimento de lógica de controle para garantir que cada sensor correspondesse ao conteúdo audiovisual correto nas telas integradas, oferecendo uma experiência fluida e sem atrasos. Storytelling Gamificado: Em vez de uma apresentação estática, o cliente explorava as vantagens da marca de forma ativa, aumentando o tempo de permanência no estande e a memorização dos serviços. Interface Intuitiva: Telas de alta resolução com interface personalizada que guiavam o usuário durante toda a dinâmica de abrir e descobrir.', 'Armario.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Armario.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Desafio dos Armários</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Flash</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Gamificação interativa onde a curiosidade vira aprendizado. Ao abrir cada armário, o participante aciona vídeos exclusivos sobre as soluções da Flash. Uma forma inovadora de apresentar benefícios corporativos unindo hardware personalizado e conteúdo digital dinâmico.</p>
+                </div>
+            </div>
+
+             <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Corrida Virtual', 'Monroe Amortecedores', 'Confira como a Monroe agitou o evento com um jogo de corrida gamificado! Os participantes puderam pilotar um carro virtual em um cenário desafiador, testando suas habilidades e competindo por prêmios. Além da diversão, a ativação também contou com a exposição de um capacete clássico de Ayrton Senna, gerando ainda mais engajamento e conexão com o público apaixonado por automobilismo.', 'Corrida Monroe.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Corrida Monroe.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Corrida Virtual</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Monroe Amortecedores</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Desafie seus reflexos em um jogo de corrida emocionante! Pilote um carro em um cenário de montanhas, desvie dos obstáculos e tente alcançar a pontuação máxima para ganhar brindes exclusivos!</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Fruit Ninja', 'Sanofi', 'Nesta ativação desenvolvida para a Sanofi, transformamos o estande em um ambiente interativo de alta energia. Através de uma interface intuitiva e visualmente rica, os participantes são convidados a participar de um desafio de agilidade, competindo por posições no ranking em tempo real. O projeto utiliza uma tela vertical de alta definição que atrai o público pelo impacto visual e pela facilidade de participação, reforçando conceitos de performance e precisão associados à marca de forma leve e memorável.', 'Fruit Ninja Sanofi.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Fruit Ninja Sanofi.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Fruit Ninja</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Sanofi</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Prepare-se para testar seus reflexos nesta versão exclusiva do clássico Fruit Ninja! Interaja diretamente com nossa tela touch de grandes dimensões e mostre sua destreza cortando as frutas e acumulando pontos. Uma experiência vibrante e dinâmica que traz a gamificação para o centro do estande.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Caça-Palavras', 'Darede à nuvem', 'Para a Darede, desenvolvemos uma experiência de gamificação que une conteúdo técnico e interatividade. Utilizando um totem horizontal de grande formato, os participantes são desafiados a localizar palavras relacionadas à infraestrutura de nuvem e segurança digital sob pressão do tempo. O jogo não apenas atrai visitantes para o estande, mas também reforça a autoridade da marca no setor de tecnologia, transformando conceitos complexos em uma jornada divertida e competitiva. Ideal para feiras corporativas que buscam um diferencial tecnológico de alto impacto visual.', 'CaçaPalavra.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="CaçaPalavra.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Caça-Palavras</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Darede à nuvem</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Teste seus conhecimentos e sua agilidade no nosso Caça-Palavras interativo! Explore o universo da tecnologia em uma tela touch de 55 polegadas, encontre os termos-chave do mundo Cloud e mostre que você domina o domínio da cibersegurança. Uma forma lúdica e tecnológica de conectar o público aos serviços de nuvem.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Painel de Agilidade - Sanofi', 'Sanofi', 'Assista como levamos dinamismo e diversão para o dia a dia do escritório da Sanofi. A ativação Speed Test é um jogo de reação rápida que utiliza uma estrutura customizada com botões eletrônicos de alta sensibilidade e feedback visual por LEDs. O funcionamento é simples, mas exige foco total: Mecânica do Jogo: Botões se acendem de forma aleatória e imprevisível na parede. O participante deve bater em cada um para apagá-lo. Hardware e Firmware: O sistema, controlado por firmware customizado, detecta o toque instantaneamente e aciona o próximo botão. Objetivo e Premiação: O desafio termina após 10 acertos consecutivos. Uma tela integrada exibe o cronômetro em tempo real, registrando as melhores pontuações do dia e incentivando a quebra de recordes entre os colegas de equipe. Uma excelente ferramenta para descompressão, integração de times e reforço da cultura de agilidade da empresa.', 'Agilidade.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Agilidade.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Painel de Agilidade - Sanofi</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Sanofi</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Coloque seus reflexos à prova na nossa Parede de Agilidade! Desenvolvida exclusivamente para os funcionários da Sanofi, esta ativação desafia você a apagar 10 botões luminosos que se acendem aleatoriamente no menor tempo possível. Uma competição eletrizante que une hardware e velocidade para integrar o time!</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Quiz Interativo Nv7', 'NV7 Soluções Tecnológicas', 'Esta ativação para a NV7 demonstra como unir o hardware e o software para criar engajamento em eventos. O projeto consiste em um totem interativo robusto, equipado com botões físicos de resposta (A, B, C, D) que se integram a um software de quiz personalizado. O fluxo da experiência foi desenhado para capturar a atenção imediata: o participante testa seus conhecimentos sobre parceiros tecnológicos (como Forescout e Lacework), recebe feedback instantâneo visual e sonoro, e entra na disputa por prêmios de alto valor. Além de atrair um grande volume de visitantes para o estande, a solução permite a coleta de dados e a qualificação de leads de maneira orgânica e divertida.', 'Quiz1.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Quiz1.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Quiz Interativo NV7</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: NV7 Soluções Tecnológicas</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Desafie seu conhecimento técnico com o Quiz NV7! Uma ativação física que utiliza um totem personalizado com botões arcade iluminados e interface dinâmica. Responda às perguntas sobre tecnologia e cibersegurança corretamente para concorrer a prêmios incríveis, como uma bicicleta elétrica. Uma forma poderosa de gerar leads e educar o público sobre soluções de TI.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Desafio de Força', 'Nestlé', 'Para a Nestlé, desenvolvemos uma ativação que tira o público da passividade e o coloca em movimento. O projeto utiliza uma estrutura de levantamento de peso equipada com sensores que detectam a execução correta do exercício em tempo real. Ao completar o desafio físico, o sistema valida a performance do participante, integrando o esforço real a um feedback visual e sonoro imediato. Esta solução é ideal para marcas de nutrição e bem-estar que desejam reforçar atributos de força e energia, criando uma conexão memorável e instagramável entre o produto e o consumidor no ambiente de feiras e eventos.', 'Levantamento de Peso Nestle.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Levantamento de Peso Nestle.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Desafio de Força</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Nestlé</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Prove sua força em uma experiência de levantamento de peso totalmente interativa! Utilizando sensores de movimento integrados à barra, os participantes testam sua potência física para desbloquear recompensas. Uma ativação de alto impacto que une performance esportiva e tecnologia para promover a linha Nutren Protein.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Desafio de Conexões', 'Dr1v', 'Prepare-se para um desafio de tirar o fôlego! Inspirado no clássico jogo Pipe, a ativação da Dr1v convida os participantes a montarem um circuito completo de canos em uma tela touchscreen. Mas não é apenas um jogo digital: a cada conexão correta, a cenografia do stand ganha vida, interagindo em tempo real com o progresso do jogador. O cronômetro corre e a pressão aumenta — você tem o que é preciso para iluminar todo o sistema antes que o tempo acabe. Objetivo: Conectar o circuito de luz. Interatividade: Integração total entre tela e iluminação física. Desafio: Raciocínio rápido contra o relógio.', 'LightTube Dr1v.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="LightTube Dr1v.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Desafio de Conexões</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Dr1v</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Teste sua agilidade e raciocínio lógico no nosso quebra-cabeça interativo! O objetivo é conectar todos os tubos de luz antes que o tempo se esgote. Uma ativação dinâmica onde cada movimento no digital reflete na iluminação da cenografia, criando uma experiência imersiva e tecnológica.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Pac-Man - Sispac', 'Sispack Medical', 'Ativação Sispac no CIOSP: Diversão com Propósito. Reviva a emoção do Pac-Man em uma experiência customizada pela Sispac! Nesta ativação interativa, os visitantes assumem o controle para eliminar os microrganismos em um labirinto desafiador, coletando itens essenciais do universo da esterilização. O jogo utiliza um totem interativo com joystick, transformando o aprendizado sobre indicadores biológicos e biossegurança em uma competição saudável e memorável. Quem consegue a maior pontuação na luta contra as bactérias. Mecânica: Inspirada no clássico Pac-Man. Tema: Eliminação de microrganismos e biossegurança. Experiência: Gamificação para engajamento de público em eventos.', 'PacMan Sispac.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="PacMan Sispac.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Pac-Man - Sispac</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Sispack Medical</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Uma releitura tecnológica do maior clássico dos arcades! No jogo da Sispac, seu objetivo é limpar o cenário e eliminar os microrganismos para garantir a segurança total. Uma ativação interativa que une diversão retrô e o compromisso com o controle biológico de ponta a ponta.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Quiz Interativo Syntec', 'Syntec', 'Gamificação e Conhecimento no Stand da Syntec. A educação continuada e o engajamento técnico ganham uma nova forma com o Quiz Interativo Syntec. Projetado especificamente para o público veterinário, o jogo apresenta questões desafiadoras com 4 alternativas, onde a rapidez e a precisão são fundamentais. Assista ao vídeo e veja como os visitantes interagem com nossa plataforma digital, explorando detalhes da linha de produtos de forma leve e imersiva. Mais do que um jogo, uma oportunidade de fixar conceitos importantes e fortalecer a conexão com a marca durante o evento. Público-alvo: Médicos Veterinários e acadêmicos. Formato: Quiz de múltipla escolha (A, B, C, D). Destaque: Interface intuitiva e alta taxa de participação.', 'Quiz2.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Quiz2.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Quiz Interativo Syntec</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Syntec</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Você está pronto para o desafio? Participe do nosso Quiz exclusivo para o setor veterinário e teste seu nível de conhecimento! Com uma interface dinâmica e perguntas estratégicas sobre nossa linha de produtos, a ativação da Syntec transforma o aprendizado em uma experiência divertida e competitiva. Escolha sua alternativa e veja se você é um especialista no assunto!</p>
+                </div>
+            </div>
+            
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Pac-Man - Sanofi', 'Sanofi', 'Veja como a Sanofi utilizou a nostalgia do Pac-Man para educar sobre a hemofilia de forma inovadora. Nesta ativação, o jogador percorre um labirinto que simula os desafios do dia a dia, onde o objetivo principal é coletar os fatores de coagulação para garantir a proteção total do organismo. Ao capturar os itens especiais, o personagem ganha força para superar os riscos de sangramentos, representados pelos fantasmas. A experiência utiliza um totem interativo com joystick, transformando conceitos complexos de saúde em uma jornada visual e envolvente, reforçando a importância da adesão ao tratamento e da qualidade de vida para os pacientes. Mecânica: Inspirada no clássico Pac-Man. Tema: Proteção articular e reposição de fator na hemofilia. Propósito: Educação em saúde e engajamento de público médico e pacientes.', 'PacManSanofi.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="PacManSanofi.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Pac-Man - Sanofi</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Sanofi</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Uma jornada de conscientização através do jogo! Nesta ativação da Sanofi baseada no clássico Pac-Man, o objetivo é coletar os fatores de proteção e evitar os obstáculos que representam os riscos à saúde articular. Uma maneira lúdica e interativa de abordar o tratamento e o cuidado contínuo na hemofilia.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Sector Challenge - Flash', 'Flash', 'Assista ao vídeo da nossa mesa interativa onde a agilidade do RH é colocada à prova! Neste jogo customizado, os participantes enfrentam o desafio de classificar os novos colaboradores da empresa em tempo real. O objetivo é simples, mas desafiador: arraste os crachás (cartas) que aparecem na tela para os setores corretos antes que o cronômetro chegue ao zero. A cada acerto, novas cartas surgem com mais rapidez, exigindo máxima concentração. Uma metáfora divertida e tecnológica para mostrar como a plataforma da Flash ajuda a organizar e simplificar a complexidade dos processos de RH, trazendo mais eficiência para o dia a dia corporativo. Objetivo: Organizar o máximo de crachás por setor. Mecânica: Jogo de agilidade e reflexo touch-screen. Contexto: Lançamento de soluções para gestão de pessoas no CONARH.', 'Painel.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Painel.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Sector Challenge - Flash</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Flash</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Será que você consegue organizar toda a jornada dos seus colaboradores em tempo recorde? Participe do desafio interativo da Flash no CONARH! Sua missão é organizar os crachás dos novos contratados em seus setores específicos. Mostre que você tem a agilidade e o foco necessários para gerir talentos com a velocidade que o RH moderno exige!</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Roleta de Prêmios', 'Ampri', 'Assista à dinâmica da Roleta Eletrônica desenvolvida para a Ampri. Diferente das soluções apenas digitais, esta ativação utiliza componentes físicos para criar uma experiência sensorial mais envolvente: Acionamento Tátil: O participante inicia o sorteio através de um botão de arcade iluminado. Feedback Visual: Um anel de LEDs de alta intensidade percorre os prêmios, criando suspense e atraindo a atenção de quem passa pelo corredor. Lógica de Premiação: Firmware customizado que controla a velocidade, a desaceleração e a parada aleatória (ou programada) nos prêmios disponíveis. É a ferramenta perfeita para distribuição de brindes e geração de leads, unindo o prazer de apertar um botão físico com a tecnologia moderna de iluminação LED para destacar a marca no evento.', 'roleta.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="roleta.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Roleta de Prêmios</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Ampri</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Aumente o engajamento no seu evento com uma experiência clássica e emocionante! A roleta física de alto impacto que une eletrônica e design, transforma o stand em um ponto de parada obrigatória, oferecendo brindes exclusivos de forma lúdica e tecnológica. Uma ativação rápida, visual e perfeita para gerar fluxo de visitantes.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('The Wall', 'SAS', 'Inspirada no jogo The Wall, esta ativação foi um dos grandes destaques no stand da SAS. O objetivo é engajar o público através de uma dinâmica de sorte e física: Interatividade: O visitante escolhe o ponto de partida e solta a ficha, que percorre um caminho de pinos metálicos até chegar à base. Cenografia Tecnológica: O painel conta com iluminação em LED azul, alinhada à identidade visual da SAS, criando um efeito futurista que atrai quem passa pelo evento. Propósito: Ideal para distribuição de brindes ou ativação de campanhas de marketing, conectando a marca a uma experiência memorável e de alta energia.', 'The Wall.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="The Wall.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">The Wall</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: SAS</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Leve a emoção do famoso jogo de TV para o seu stand! Nesta ativação interativa para a SAS, os participantes soltam uma ficha em um painel vertical repleto de obstáculos físicos, onde a trajetória incerta termina em diferentes faixas de pontuação ou prêmios. Uma experiência visual dinâmica que reforça o conceito de inteligência e estratégia de forma lúdica.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Pac-Man - ONG', 'ONG Minha Down é UP', 'Assista como a tecnologia pode dar uma nova vida aos grandes clássicos. O Futuristic Arcade é uma estação de jogo desenvolvida para se destacar em qualquer ambiente corporativo ou feira de negócios, unindo diversão e estética de alto impacto: Mecânica de Jogo: O fiel e amado Pac-Man, rodando com fluidez em uma tela vertical de alta definição. Design e Hardware: Diferente dos arcades tradicionais, esta versão possui um perfil slim e futurista, com acabamento em preto piano e base iluminada por LEDs dinâmicos que mudam de cor conforme a interação. Controles Profissionais: Equipado com joystick e botões de arcade de alta precisão, garantindo a melhor jogabilidade e resposta tátil para os participantes. Impacto no Evento: Uma ferramenta de marketing poderosa para gerar fluxo de visitantes, promover competições de ranking e criar uma conexão emocional imediata entre o público e a marca.', 'PacMan2.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="PacMan2.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Pac-Man - ONG</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: ONG Minha Down é UP</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Reviva o clássico dos anos 80 em uma experiência totalmente reinventada! Com uma estrutura slim e moderna, esta ativação traz o famoso Pac-Man para o centro das atenções, utilizando hardware customizado e iluminação em LED para criar um ambiente futurista. O desafio perfeito para atrair todas as gerações e gerar engajamento imediato no evento.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Espaço Instagramável 1', 'Chiesi', 'Veja como a iluminação estratégica elevou a presença da Chiesi no evento. O vídeo mostra a composição completa da parede instagramável, onde a tecnologia de luz encontra o design biofílico: Hardware de Iluminação: Fabricação de luminárias customizadas com filamentos de neon LED, garantindo uma luz homogênea e vibrante nos formatos anatômicos de pulmão e coração. Ambientação Integrada: A ativação serve como ponto focal do stand, harmonizando o brilho das luzes com o jardim vertical e a identidade visual da marca, criando o cenário perfeito para fotos e vídeos. Conceito e Mensagem: Através do contraste entre o tecnológico e o natural, a ativação materializa a hashtag #CadaRespiroConta, tornando a mensagem da Chiesi tangível e compartilhável para todos os visitantes. Uma solução de hardware e cenografia que une estética moderna e funcionalidade para criar uma experiência de marca memorável.', 'LuminariaInstagramavel2.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="LuminariaInstagramavel2.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Espaço Instagramável 1</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Chiesi</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Um cenário que respira inovação! Para a Chiesi, desenvolvemos luminárias eletrônicas em neon LED que representam pulmões e corações, criando um ponto de interesse visual irresistível. Integradas a um jardim vertical exuberante, essas peças transformam o stand em um espaço instagramável que reforça o propósito de cuidado com a vida da marca.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Espaço Instagramável 2', 'Chiesi', 'Assista como a luz e a natureza se encontram nesta parede instagramável desenvolvida para a Chiesi. O projeto foi pensado para humanizar a marca e criar uma conexão imediata com os visitantes do evento: Design e Tecnologia: Luminárias customizadas com tecnologia de Neon LED de alta intensidade, moldadas precisamente nos formatos de pulmões e corações, simbolizando a saúde e o cuidado. Composição Paisagística: As luzes foram integradas a uma parede de samambaias naturais, criando um contraste vibrante entre o brilho tecnológico e o frescor do jardim vertical. Engajamento Digital: Com a hashtag centralizada e iluminação perfeitamente ajustada para fotos em smartphones, a ativação incentiva o público a compartilhar a experiência nas redes sociais, ampliando o alcance da marca para além do stand físico. Uma solução elegante e poderosa para fixar a identidade visual da Chiesi de forma lúdica e moderna.', 'LuminariaInstagramavel1.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="LuminariaInstagramavel1.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Espaço Instagramável 2</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Chiesi</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Transformando o stand em um cenário memorável! Esta ativação da Chiesi utiliza luminárias personalizadas em neon LED no formato de corações e pulmões, integradas a um jardim vertical. Um ponto de interação que une a estética "instagramável" ao propósito da marca, gerando engajamento orgânico.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Árvore da Vida', 'Chiesi', 'Assista como transformamos a identidade da Chiesi em um elemento cenográfico vivo e luminoso. O vídeo destaca a integração das luminárias de LED à estrutura da árvore, criando uma metáfora visual poderosa sobre a importância da respiração: Hardware e Fabricação de Luz: Desenvolvimento de luminárias de Neon LED flexível, moldadas precisamente no contorno anatômico de pulmões, garantindo um brilho homogêneo e suave. Integração Cenográfica: As peças foram instaladas de forma orgânica entre os galhos e folhas da árvore do stand, conectando a simbologia da natureza árvore como pulmão do mundo ao foco da empresa. Impacto e Ambientação: A iluminação quente das luminárias cria um contraste atraente com o verde da cenografia, tornando o espaço um ponto de parada obrigatória para fotos e reforçando a mensagem da marca de forma lúdica e memorável. Uma solução de hardware de iluminação que vai além da estética, entregando significado e conexão com o público do evento.', 'ArvoreLuminaria.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="ArvoreLuminaria.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Árvore da Vida</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Chiesi</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Uma fusão poética entre natureza e tecnologia! Nesta cenografia para a Chiesi, desenvolvemos luminárias customizadas em neon LED no formato de pulmões, integradas aos galhos de uma árvore estilizada. Um ponto focal que simboliza a vida, a respiração e o compromisso da marca com a saúde respiratória, gerando um ambiente acolhedor e instagramável.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Mesa Interativa', 'In The Box', 'Assista como transformamos a experimentação de perfumes em um momento tecnológico memorável. Esta mesa interativa foi desenvolvida para educar e encantar o consumidor de forma autônoma: Inteligência de Sensores: Cada perfume possui uma base monitorada por sensores. O sistema detecta a retirada do produto e dispara o conteúdo correspondente em tempo real. Dinâmica de Conteúdo: Enquanto todos os perfumes estão na mesa, uma proteção de tela institucional mantém a marca em destaque. No momento da interação, o vídeo institucional dá lugar à apresentação específica do produto escolhido. Hardware e Software: O projeto integra uma tela profissional de alta definição a um sistema de controle customizado, garantindo latência zero entre a ação física do cliente e a resposta visual na mesa. Propósito: Ideal para PDV e showrooms, a mesa atua como um vendedor digital, detalhando as famílias olfativas e a personalidade de cada fragrância enquanto o cliente a testa fisicamente.', 'MesaInterativa.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="MesaInterativa.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Mesa Interativa</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: In The Box</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Uma experiência imersiva que une o olfativo ao digital. Através de sensores de presença, a mesa identifica cada perfume da In The Box; ao retirar um frasco da base, o sistema reage instantaneamente, apresentando notas olfativas e vídeos exclusivos daquela fragrância. Tecnologia a serviço da alta perfumaria para guiar o cliente em uma jornada sensorial única.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Balança do Equilíbrio', 'Sanofi', 'Assista como transformamos o mecanismo de ação de um medicamento em uma experiência interativa de grande impacto visual. Desenvolvida para a Sanofi, a Balança do Equilíbrio Homeostático foi projetada para educar sobre o tratamento da hemofilia de forma lúdica: Mecânica Tátil: O visitante interage fisicamente com a balança. Quando o lado da Trombose ou Sangramento, está em desequilíbrio, o sistema incentiva a busca pelo centro. Hardware e Feedback Visual: O painel conta com iluminação em LED que responde ao movimento da balança. Conforme o equilíbrio é alcançado, os pontos de luz no painel se acendem, materializando a ideia de proteção e regulação do sistema. Design e Propósito: Com um acabamento premium em acrílico e metal, a peça se destaca no ambiente, facilitando a explicação médica e fixando os benefícios do produto na mente do público. Uma solução de hardware customizado que humaniza a ciência e cria uma conexão memorável entre o paciente, o profissional de saúde e a marca.', 'Balança.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Balança.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Balança do Equilíbrio</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Sanofi</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Uma demonstração física e visual do tratamento da hemofilia. Nesta ativação para a Sanofi, os participantes utilizam uma balança interativa para entender o conceito de equilíbrio homeostático. Ao adicionar "fatores de proteção" (esferas) no prato da balança, o sistema reage iluminando o painel, simbolizando o controle do sangramento e a estabilidade do organismo. Tecnologia e design a serviço da educação em saúde.</p>
+                </div>
+            </div>
+
+            <div class="video-card bg-slate-800 rounded-2xl overflow-hidden shadow-xl border border-slate-700"
+                 onclick="openModal('Totem Digital', 'Sanofi', 'Assista como a tecnologia pode otimizar a jornada de aprendizado em grandes eventos médicos. O Totem Digital Sanofi foi projetado para atuar como um portal de notícias e atualizações científicas em tempo real: Interface Familiar: O software utiliza uma linguagem visual inspirada em aplicativos modernos estilo reels/tiktok, permitindo que o usuário navegue por vídeos explicativos, destaques de palestras e cards informativos com facilidade. Conteúdo Estratégico: Focado em grandes congressos como o ASH 2025, o sistema organiza tópicos de hematologia e hemofilia, permitindo que o médico acesse resumos de aulas e perfis de palestrantes com apenas um toque. Integração Phygital: O totem exibe QR Codes dinâmicos que permitem ao visitante levar o conteúdo para o celular, estendendo a experiência do stand para o ambiente pessoal. Hardware: Estrutura de design slim com tela touchscreen de alta definição, perfeitamente integrada à identidade visual limpa e profissional da Sanofi. Uma solução de software e hardware que transforma o stand em um centro de inteligência e referência para os profissionais de saúde.', 'Totem Cell.mp4')">
+                <div class="relative h-48 overflow-hidden bg-black">
+                    <video src="Totem Cell.mp4" autoplay muted loop playsinline class="w-200 h-200 object-cover opacity-70"></video>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="bg-blue-600 p-2 rounded-full shadow-lg">▶</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-xl">Totem Digital</h3>
+                    <p class="text-blue-400 text-xl font-medium mb-2">Cliente: Sanofi</p>
+                    <p class="text-slate-400 text-sm line-clamp-8">Inovação a serviço da informação científica! Este totem interativo para a Sanofi oferece uma interface inspirada em redes sociais para apresentar as últimas atualizações médicas e congressos internacionais. Uma plataforma digital robusta que facilita o acesso a conteúdos complexos de forma ágil, visual e totalmente intuitiva para o público especializado.</p>
+                </div>
+            </div> 
+                
+
+            </div>
+        </div>
+   </main>
+
+    <footer class="border-t border-slate-800 bg-slate-950 py-3 px-2 shadow-[0_-4px_10px_rgba(0,0,0,0.5)]">
+        <div class="max-w-6xl mx-auto flex flex-row justify-between items-start gap-1">
+            
+            <div class="flex-1 text-center border-r border-slate-800 pr-1">
+                <span class="text-white font-bold text-[10px] md:text-sm uppercase leading-none">Eureka Games</span>
+                <p class="text-[8px] md:text-[11px] text-slate-500 whitespace-nowrap">Desde 2024</p>
+            </div>
+
+            <div class="flex-1 text-center border-r border-slate-800 pr-1">
+                <h4 class="text-white font-bold text-[9px] md:text-xs uppercase mb-1">Contato</h4>
+                <p class="text-[8px] md:text-[11px] text-slate-400 whitespace-nowrap">(11) 91253-0220</p>
+                <p class="text-[8px] md:text-[11px] text-slate-400 hidden md:block">contato@eurekagames.com</p>
+            </div>
+
+            <div class="flex-1 text-center">
+                <h4 class="text-white font-bold text-[9px] md:text-xs uppercase mb-1">Localização</h4>
+                <p class="text-[8px] md:text-[11px] text-slate-400 whitespace-nowrap">F. de Vasconcelos-SP</p>
+                <p class="text-[8px] md:text-[11px] text-slate-400 hidden md:block">Atendimento Nacional</p>
+            </div>
+            
+        </div>
+        <p class="text-center text-[8px] md:text-xs text-slate-600 mt-2 border-t border-slate-900 pt-2">
+            © 2026 Eureka Games - Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <div id="videoModal">
+        <div class="modal-content">
+            <div class="video-container">
+                <video id="modalVideo" controls playsinline></video>
+            </div>
+            <div class="p-5 overflow-y-auto text-center">
+                <h2 id="modalTitle" class="text-xl font-bold"></h2>
+                <p id="modalClient" class="text-blue-400 text-xs font-bold mt-1 tracking-widest"></p>
+                <p id="modalDesc" class="mt-4 text-slate-400 text-xs leading-relaxed"></p>
+                
+                <div class="mt-6 flex flex-col gap-2">
+                    <a id="whatsappBtn" href="#" target="_blank" class="bg-green-600 hover:bg-green-500 text-white py-3 rounded-lg font-bold text-xs">
+                        SOLICITAR ORÇAMENTO
+                    </a>
+                    <button onclick="closeModal()" class="text-slate-500 py-2 text-[10px] font-bold uppercase">FECHAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(titulo, cliente, desc, videoSrc) {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            document.getElementById('modalTitle').innerText = titulo;
+            document.getElementById('modalClient').innerText = "Cliente: " + cliente;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('whatsappBtn').href = `https://wa.me/5511912530220?text=${encodeURIComponent("Olá Thiago, vi o projeto " + titulo + " no seu portfólio.")}`;
+            video.src = encodeURI(videoSrc);
+            modal.style.setProperty('display', 'flex', 'important');
+            video.play();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            video.pause();
+            video.src = "";
+            modal.style.setProperty('display', 'none', 'important');
+        }
+
+        window.onclick = function(e) { if (e.target.id === 'videoModal') closeModal(); }
+    </script>
+</body>
+</html>
